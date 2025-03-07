@@ -51,11 +51,17 @@ def generate_response(
         previous_actions = "None"
     user_message = {
         "role": "user",
-        "content": user_instruction.format(
-            overall_goal=instruction,
-            previous_actions=previous_actions,
-            low_level_instruction=low_level_instruction,
-        ),
+        "content": [
+            {"type": "image", "image": image},
+            {
+                "type": "text",
+                "text": user_instruction.format(
+                    overall_goal=instruction,
+                    previous_actions=previous_actions,
+                    low_level_instruction=low_level_instruction,
+                ),
+            }
+        ],
     }
 
     if low_level_instruction:
