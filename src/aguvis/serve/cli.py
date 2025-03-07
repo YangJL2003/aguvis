@@ -62,12 +62,12 @@ def generate_response(
         # If low-level instruction is provided
         # We enforce using "Action: {low_level_instruction} to guide generation"
         recipient_text = f"<|im_start|>assistant<|recipient|>all\nAction: {low_level_instruction}\n"
+    elif mode == "grounding":
+        recipient_text = "<|im_start|>assistant<|recipient|>os\n"
+    elif mode == "self-plan":
+        recipient_text = "<|im_start|>assistant<|recipient|>"
     elif mode == "force-plan":
         recipient_text = "<|im_start|>assistant<|recipient|>all\nThought: "
-    elif mode == "grounding":
-        recipient_text = "<|im_start|>assistant<|recipient|>all\n"
-    elif mode == "self-plan":
-        recipient_text = ""
     else:
         raise ValueError(f"Invalid mode: {mode}")
 
